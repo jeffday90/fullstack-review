@@ -16,6 +16,7 @@ app.post('/repos', function (req, res) {
       for (var i = 0; i < results.length; i++){
         database.save(results[i]);
       }
+      res.end();
     }
   });
 });
@@ -25,7 +26,7 @@ app.get('/repos', function (req, res) {
     if (err){
       console.log(err);
     } else {
-      console.log('here in server')
+      //console.log('here in server')
       res.send(results);
     }
   });

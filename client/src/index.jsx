@@ -17,13 +17,13 @@ class App extends React.Component {
   }
 
   getRepos (){
-    console.log('here');
+    console.log('start of GET repos func');
     $.ajax({
       url: 'http://localhost:1128/repos',
       method: 'GET',
       success: (data) => this.setState({
         repos: data
-      }),
+      }, () => console.log('GET in index (callback from GET)')),
       error: () => console.log('error on GET request')
     });
   }
@@ -35,18 +35,22 @@ class App extends React.Component {
       method: 'POST',
       contentType: 'text/plain',
       data: term,
-      success: () => { this.getRepos(), console.log('success') },
+      success: () => {this.getRepos()},
       error: () => console.log('POST error!')
     });
   }
 
   render () {
     return (<div>
-      <h1>Github Fetcher</h1>
-      <RepoList repos={this.state.repos}/>
+      <h1 style={centerStyle}>Github Fetcher</h1>
       <Search onSearch={this.search.bind(this)}/>
+      <RepoList repos={this.state.repos}/>
     </div>)
   }
+}
+
+var centerStyle = {
+  textAlign: 'center'
 }
 
 ReactDOM.render(<App />, document.getElementById('app'));
