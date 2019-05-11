@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/fetcher');
 
 let repoSchema = new mongoose.Schema({
-  id: Number,
+  id: {type: Number, index: {unique: true}},
   name: String,
   repo_url: String,
   login: String, //inside owner object
@@ -28,6 +28,9 @@ var save = repo => {
     open_issues: repo.open_issues_count
   });
   doc.save();
+
+  //update
+  //
 }
 
 var fetch = callback => {

@@ -3,7 +3,7 @@ import RepoListItem from './RepoListItem.jsx';
 
 const RepoList = (props) => (
   <div>
-    <h4 style={centerStyle}> Repo List Component </h4>
+    <h4 style={centerStyle}> Top 25 Repos </h4>
     <div>
       {props.repos.map(repo => <RepoListItem repo={repo}/>)}
     </div>
